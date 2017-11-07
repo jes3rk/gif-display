@@ -6,7 +6,7 @@ function rand() {
   randOff = Math.floor(Math.random()*50);
 }
 
-
+// Dynamically create buttons
 function createBtn() {
   $('.buttons').empty();
   for (var i = 0; i < topics.length; i++) {
@@ -41,14 +41,11 @@ function giphy(name) {
   });
 }
 
-function toGif(name) {
-
-}
 
 $(document).ready(function() {
   createBtn();
 
-  $('.adorBtn').on('click', function(event) {
+  $(document).on('click', '.adorBtn', function(event) {
     console.log(event.target.name);
     rand();
     $('.display').empty();
@@ -58,5 +55,4 @@ $(document).ready(function() {
   $('.input-group-btn').on('click', function() {
     $('.buttons').append('<button class="btn btn-success adorBtn" name=' + $('input').val() + ' >' + $('input').val() + '</button>');
   });
-
 })
