@@ -1,16 +1,22 @@
 var topics = ["cat", "monkey", "turtle", "dog", "hamster", "guinea-pig", "fish", "sheep", "bird"];
-
+var randOff;
 var apiKey = "YKIP52CjjkbKLTnbeOTl5ul79X3ISqRl"
 
+function rand() {
+  randOff = Math.floor(Math.random()*50);
+}
+
+
 function createBtn() {
+  $('.buttons').empty();
   for (var i = 0; i < topics.length; i++) {
     $('.buttons').append('<button class="btn btn-success adorBtn" name=' + topics[i] + ' >' + topics[i] + '</button>');
   };
 }
 
 function giphy(name) {
-  $('.display').empty();
-  var url = "http://api.giphy.com/v1/gifs/search?q=cute+" + name + "&api_key=" + apiKey + "&limit=10";
+
+  var url = "http://api.giphy.com/v1/gifs/search?q=cute+" + name + "&api_key=" + apiKey + "&limit=10&offset=" + randOff;
 
   $.ajax({
     url: url,
@@ -24,8 +30,13 @@ function giphy(name) {
     };
     // Register click on image
       // Must be in here because otherwise the DOM doesn't recognize the event
-    $('img').on('click', function(event) {
-      $(this).attr("src", response.data[event.target.name].images.looping.mp4);
+      // Checks to see if the img src is the still and adjusts accordingly
+    $('.card-img-top').on('click', function(event) {
+      if ($(this).prop('src') === response.data[event.target.name].images.original_still.url) {
+        $(this).attr("src", response.data[event.target.name].images.original.url);
+      } else {
+        $(this).attr("src", response.data[event.target.name].images.original_still.url);
+      };
     });
   });
 }
@@ -38,9 +49,12 @@ $(document).ready(function() {
   createBtn();
 
   $('.adorBtn').on('click', function(event) {
+    console.log(event.target.name);
+    rand();
+    $('.display').empty();
     giphy(event.currentTarget.name);
   });
-  
+
   $('.input-group-btn').on('click', function() {
     $('.buttons').append('<button class="btn btn-success adorBtn" name=' + $('input').val() + ' >' + $('input').val() + '</button>');
   });
