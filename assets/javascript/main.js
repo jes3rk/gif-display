@@ -1,4 +1,4 @@
-var topics = ["cat", "monkey", "baby-turtle", "dog", "hamster", "guinea-pig", "fish", "sheep", "bird"];
+var topics = ["happy", "dance", "wow", "sad", "cheer", "life-event", "fail", "ron", "leslie"];
 var randOff;
 var apiKey = "YKIP52CjjkbKLTnbeOTl5ul79X3ISqRl"
 
@@ -16,7 +16,7 @@ function createBtn() {
 
 function giphy(name) {
 
-  var url = "https://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=" + apiKey + "&limit=10&offset=" + randOff;
+  var url = "https://api.giphy.com/v1/gifs/search?q=parks+rec+" + name + "&api_key=" + apiKey + "&limit=10&offset=" + randOff;
 
   $.ajax({
     url: url,
