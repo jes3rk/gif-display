@@ -46,7 +46,6 @@ $(document).ready(function() {
   createBtn();
 
   $(document).on('click', '.adorBtn', function(event) {
-    console.log(event.target.name);
     rand();
     $('.display').empty();
     giphy(event.currentTarget.name);
