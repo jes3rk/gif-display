@@ -7,9 +7,10 @@
 }
 
 .card {
-  width: 50%;
-  height: 400px;
+  width: 48%;
+  /*height: 400px;*/
   float: left;
+  margin: 5px;
 }
 
 .card-text {
